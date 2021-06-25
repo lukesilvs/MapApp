@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">mapboxtrial</string>
+    <string name="access_token">pk.eyJ1IjoiZGlpc2NvdmVyeSIsImEiOiJja3FhcTY3dnEwamFzMnNxdG1idWJmdDc1In0.T_REdk5jEvvxAIPqlICtOw</string>
+    <string name="start_navigating" />
+</resources>
