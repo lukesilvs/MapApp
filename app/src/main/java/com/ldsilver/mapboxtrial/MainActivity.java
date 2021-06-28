@@ -3,18 +3,24 @@ package com.ldsilver.mapboxtrial;
 
 
 //import android.graphics.Point;
+
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.View;
-import android.webkit.WebStorage;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.mapbox.android.core.location.LocationEngine;
 import com.mapbox.android.core.location.LocationEngineListener;
 import com.mapbox.android.core.location.LocationEnginePriority;
@@ -48,6 +54,13 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback, LocationEngineListener, PermissionsListener, MapboxMap.OnMapClickListener {
 
+
+    FloatingActionButton fabEdit;
+    ExtendedFloatingActionButton fabMain;
+
+    TextView tvFabMenu, fabEdit_text;
+    Boolean isAllFabsVisible;
+
     private MapView mapView;
     private MapboxMap map;
     private PermissionsManager permissionsManager;
@@ -60,6 +73,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private Button startButton;
     private NavigationMapRoute navigationMapRoute;
     private static final String TAG="MainActivity";
+    //private CategorySearchEngine categorySearchEngine;
+    //private SearchRequestTask searchRequestTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +97,49 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 NavigationLauncher.startNavigation(MainActivity.this,options);
             }
         });
+
+        fabMain = findViewById(R.id.fab_MAIN);
+
+        // button
+        fabEdit = findViewById(R.id.fab_edit);
+
+        // textView
+        fabEdit_text = findViewById(R.id.textView_fabEdit);
+
+        // visibility
+        fabEdit.setVisibility(View.GONE);
+        fabEdit_text.setVisibility(View.GONE);
+
+        isAllFabsVisible = false;
+
+        fabMain.shrink();
+        fabMain.setOnClickListener(v -> {
+            if (!isAllFabsVisible) {
+                fabEdit.setVisibility(View.VISIBLE);
+                fabEdit_text.setVisibility(View.VISIBLE);
+
+                fabMain.extend();
+
+                isAllFabsVisible = true;
+            } else {
+                fabEdit.setVisibility(View.GONE);
+                fabEdit_text.setVisibility(View.GONE);
+
+                fabMain.shrink();
+
+                isAllFabsVisible = false;
+            }
+        });
+
+        // click on fab edit
+        fabEdit.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, EditProfile_Activity.class);
+            startActivity(intent);
+        });
     }
+
+
+
 
     @Override
     public void onMapReady(MapboxMap mapboxMap) {
@@ -270,6 +327,20 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
 
         mapView.onDestroy();
+    }
+
+    // back press button to exit the app
+    int counter = 0;
+    @Override
+    public void onBackPressed() {
+        // time is in milliseconds
+        counter++;
+        if(counter == 1){
+            Toast.makeText(this, "Press Back again to exit the application.", Toast.LENGTH_SHORT).show();
+        }else if(counter == 2){
+            super.onBackPressed();
+            finishAffinity();
+        }
     }
 }
 

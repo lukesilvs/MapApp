@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:mapbox="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,5 +32,53 @@
         mapbox:layout_constraintBottom_toBottomOf="parent"
         mapbox:layout_constraintEnd_toEndOf="parent"
         mapbox:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        mapbox:layout_constraintBottom_toTopOf="@+id/start_button"
+        mapbox:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/fab_MAIN"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp"
+            android:gravity="end"
+            android:text="@string/ExtendedFabMenu_actions"
+            app:icon="@drawable/ic_add"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_edit"
+            android:layout_width="wrap_content"
+            android:layout_height="103dp"
+            android:layout_marginBottom="24dp"
+            android:backgroundTint="#3278FF"
+            app:fabSize="normal"
+            app:layout_constraintBottom_toTopOf="@+id/fab_MAIN"
+            app:layout_constraintEnd_toEndOf="@+id/fab_MAIN"
+            app:srcCompat="@drawable/ic_edit_profile"
+            tools:ignore="ContentDescription" />
+
+        <TextView
+            android:id="@+id/textView_fabEdit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/myProfile"
+            app:layout_constraintBottom_toBottomOf="@+id/fab_edit"
+            app:layout_constraintEnd_toStartOf="@+id/fab_edit"
+            app:layout_constraintTop_toTopOf="@+id/fab_edit" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 
