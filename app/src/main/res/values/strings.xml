@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">mapboxtrial</string>
+    <string name="app_name">DIISCOVERY</string>
     <string name="access_token">pk.eyJ1IjoiZGlpc2NvdmVyeSIsImEiOiJja3FhcTY3dnEwamFzMnNxdG1idWJmdDc1In0.T_REdk5jEvvxAIPqlICtOw</string>
     <string name="start_navigating" />
     <string name="motto">Discover, Explore, Observe</string>
@@ -27,4 +27,5 @@
     <string name="sign_out">Sign out</string>
     <string name="ExtendedFabMenu_actions">Menu</string>
     <string name="myProfile">Edit Profile</string>
+    <string name="imperial_metric">Imperial / Metric</string>
 </resources>

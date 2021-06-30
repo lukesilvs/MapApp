@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -21,37 +22,35 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class EditProfile_Activity extends AppCompatActivity
 {
     private String currentUser;
     private EditText et_firstName, et_lastName, et_emailAddress;
+    private TextView tv_resetPassword;
 
-    // ListView mListView;
-    // List<UserAccount> userAccountList;
+    private Button btnUpdate;
 
     DatabaseReference userDbRef;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
 
-        // list view
-        // mListView = findViewById(R.id.listView_ListCredentials);
-        // userAccountList = new ArrayList<>();
-
         et_firstName = findViewById(R.id.editText_dbFirstName);
         et_lastName = findViewById(R.id.editText_dbLastName);
         et_emailAddress = findViewById(R.id.editText_dbEmailAddress);
+        tv_resetPassword = findViewById(R.id.TextView_updateResetPassword);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        userDbRef = database.getReference("Users");
 
         // Firebase
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser().getEmail();
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        userDbRef = database.getReference("Users");
 
         // read from the database
         userDbRef.addValueEventListener(new ValueEventListener() {
@@ -70,8 +69,6 @@ public class EditProfile_Activity extends AppCompatActivity
                                 Toast.LENGTH_SHORT).show();
                     }
                 }
-                //ListAdapter adapter = new ListAdapter(EditProfile_Activity.this, userAccountList);
-                //mListView.setAdapter(adapter);
             }
 
             @Override
@@ -81,9 +78,15 @@ public class EditProfile_Activity extends AppCompatActivity
         });
 
         // update button
-        Button btnUpdate = findViewById(R.id.btn_Update);
+        btnUpdate = findViewById(R.id.btn_Update);
         btnUpdate.setOnClickListener(v -> {
             UpdateUserInfo();
+        });
+
+        // reset password for user profile
+        tv_resetPassword.setOnClickListener(view -> {
+            Intent intent = new Intent(EditProfile_Activity.this, ForgotPassword_Activity.class);
+            startActivity(intent);
         });
 
         // sign out button
@@ -125,8 +128,20 @@ public class EditProfile_Activity extends AppCompatActivity
             return;
         }
 
+        /*
         // update user info here
+        HashMap<String, String> userMap = new HashMap<>();
 
+        userMap.put("firstName", firstName);
+        userMap.put("lastName", lastName);
+        userMap.put("emailAddress", email);
+
+        userDbRef.setValue(userMap);
+        */
+
+        // once info has been updated
+        Toast.makeText(EditProfile_Activity.this, "Your details has been updated!",
+                Toast.LENGTH_SHORT).show();
     }
 
 }

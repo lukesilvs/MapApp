@@ -29,11 +29,12 @@ public class ForgotPassword_Activity extends AppCompatActivity
 
         et_email = findViewById(R.id.editText_ResetEmailAddress);
 
+        /*
         TextView backToLogin = findViewById(R.id.btn_BackToLogin);
         backToLogin.setOnClickListener(v -> {
             Intent myIntent = new Intent(ForgotPassword_Activity.this, Login_Activity.class);
             startActivity(myIntent);
-        });
+        });*/
 
         Button buttonResetPassword = findViewById(R.id.btn_ResetPassword);
         buttonResetPassword.setOnClickListener(v -> resetPassword());

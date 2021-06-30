@@ -2,13 +2,17 @@ package com.ldsilver.mapboxtrial;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +22,7 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Register_Activity extends AppCompatActivity
 {
     private EditText et_firstName, et_lastName, et_userEmail, et_userPassword;
+    // private SwitchCompat s_measurement;
     private ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
@@ -43,15 +48,23 @@ public class Register_Activity extends AppCompatActivity
         et_lastName = findViewById(R.id.editText_RegLastName);
         et_userEmail = findViewById(R.id.editText_RegEmailAddress);
         et_userPassword = findViewById(R.id.editText_RegPassword);
+       // s_measurement = (SwitchCompat) findViewById(R.id.switch_measurementSystem);
+
+       /* if (s_measurement != null) {
+            s_measurement.setOnCheckedChangeListener((CompoundButton.OnCheckedChangeListener) this);
+        }*/
 
         progressBar = findViewById(R.id.progressBar_Register);
+
     }
 
     private void RegisterUser() {
+
         final String firstName = et_firstName.getText().toString().trim();
         final String lastName = et_lastName.getText().toString().trim();
         final String email = et_userEmail.getText().toString().trim();
         final String password = et_userPassword.getText().toString().trim();
+
 
         // if fields are empty
         if (firstName.isEmpty()){
@@ -87,6 +100,8 @@ public class Register_Activity extends AppCompatActivity
             et_userPassword.requestFocus();
             return;
         }
+        // imperial or metric
+
 
         // progress bar visibility to true
         progressBar.setVisibility(View.VISIBLE);

@@ -1,11 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="match_parent">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context=".Register_Activity">
 
     <androidx.cardview.widget.CardView
@@ -45,7 +50,7 @@
                     android:text="@string/app_name"
                     android:textAlignment="center"
                     android:textColor="#000000"
-                    android:textSize="40sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
             </androidx.cardview.widget.CardView>
@@ -60,7 +65,7 @@
                 android:text="@string/welcome_message"
                 android:textAlignment="center"
                 android:textColor="#000000"
-                android:textSize="20sp" />
+                android:textSize="12sp" />
 
 
         </LinearLayout>
@@ -124,6 +129,16 @@
             android:inputType="textPassword"
             android:textColorLink="#3278FF" />
 
+        <!--
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switch_measurementSystem"
+            android:layout_gravity="center"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:text="@string/imperial_metric"
+            android:checked="false"/>
+        -->
+
     </LinearLayout>
 
     <LinearLayout
@@ -131,18 +146,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/ll_credentials"
         android:layout_margin="10dp"
+        android:paddingBottom="20dp"
         android:orientation="vertical">
 
         <!-- register button -->
         <Button
             android:id="@+id/btn_Register"
-            android:layout_width="200dp"
-            android:layout_height="60dp"
+            android:layout_width="130dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
             android:layout_margin="10dp"
             android:backgroundTint="#3278FF"
             android:text="@string/register"
-            android:textSize="20sp"
+            android:textSize="12sp"
             android:textColor="#FFFFFF" />
 
         <!-- login here -->
@@ -154,7 +170,7 @@
             android:layout_gravity="center"
             android:text="@string/login_here"
             android:textColor="#000000"
-            android:textSize="15sp" />
+            android:textSize="12sp" />
 
         <ProgressBar
             android:id="@+id/progressBar_Register"
@@ -170,3 +186,5 @@
     </LinearLayout>
 
 </RelativeLayout>
+
+</ScrollView>

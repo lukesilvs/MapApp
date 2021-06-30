@@ -4,6 +4,7 @@ public class UserAccount
 {
     public String firstName, lastName, emailAddress;
 
+
     // empty constructor
     public UserAccount() { }
 
@@ -12,6 +13,7 @@ public class UserAccount
         this.firstName = firstName;
         this.lastName = lastName;
         this.emailAddress = emailAddress;
+       ;
     }
 
     // getters
@@ -26,4 +28,6 @@ public class UserAccount
     public String getEmailAddress() {
         return emailAddress;
     }
+
+
 }
